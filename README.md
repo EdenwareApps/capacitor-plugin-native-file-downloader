@@ -24,14 +24,17 @@ npx cap sync
 ### scheduleFileDownload(...)
 
 ```typescript
-scheduleFileDownload(options: FileDownloadOptions) => Promise<FileDownloadResponse>
+scheduleFileDownload(options: ScheduleFileDownloadOptions) => Promise<ScheduleFileDownloadResult>
 ```
 
-| Param         | Type                                                                |
-| ------------- | ------------------------------------------------------------------- |
-| **`options`** | <code><a href="#filedownloadoptions">FileDownloadOptions</a></code> |
+Schedule file to be downloaded.
+Returned Promise resolves when the download is scheduled (not when download completes).
 
-**Returns:** <code>Promise&lt;<a href="#filedownloadresponse">FileDownloadResponse</a>&gt;</code>
+| Param         | Type                                                                                |
+| ------------- | ----------------------------------------------------------------------------------- |
+| **`options`** | <code><a href="#schedulefiledownloadoptions">ScheduleFileDownloadOptions</a></code> |
+
+**Returns:** <code>Promise&lt;<a href="#schedulefiledownloadresult">ScheduleFileDownloadResult</a>&gt;</code>
 
 --------------------
 
@@ -39,18 +42,18 @@ scheduleFileDownload(options: FileDownloadOptions) => Promise<FileDownloadRespon
 ### Interfaces
 
 
-#### FileDownloadResponse
+#### ScheduleFileDownloadResult
 
-| Prop             | Type                |
-| ---------------- | ------------------- |
-| **`downloadId`** | <code>string</code> |
+| Prop             | Type                | Description                                            |
+| ---------------- | ------------------- | ------------------------------------------------------ |
+| **`downloadId`** | <code>string</code> | The internal identifier of scheduled download process. |
 
 
-#### FileDownloadOptions
+#### ScheduleFileDownloadOptions
 
-| Prop           | Type                |
-| -------------- | ------------------- |
-| **`url`**      | <code>string</code> |
-| **`fileName`** | <code>string</code> |
+| Prop           | Type                | Description                                                                   |
+| -------------- | ------------------- | ----------------------------------------------------------------------------- |
+| **`url`**      | <code>string</code> | Url of the file to be downloaded. e.g. https://example.com/downloads/file.pdf |
+| **`fileName`** | <code>string</code> | Name of the downloaded file (including extension). e.g. my-file.pdf           |
 
 </docgen-api>
