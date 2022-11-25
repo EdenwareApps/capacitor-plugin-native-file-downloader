@@ -1,6 +1,6 @@
 # capacitor-plugin-native-file-downloader
 
-Capacitor plugin for downloading files using native apis.
+Capacitor plugin for downloading files using native apis. Currently available only on web and Android.
 
 ## Install
 
@@ -13,25 +13,44 @@ npx cap sync
 
 <docgen-index>
 
-* [`echo(...)`](#echo)
+* [`scheduleFileDownload(...)`](#schedulefiledownload)
+* [Interfaces](#interfaces)
 
 </docgen-index>
 
 <docgen-api>
 <!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
 
-### echo(...)
+### scheduleFileDownload(...)
 
 ```typescript
-echo(options: { value: string; }) => Promise<{ value: string; }>
+scheduleFileDownload(options: FileDownloadOptions) => Promise<FileDownloadResponse>
 ```
 
-| Param         | Type                            |
-| ------------- | ------------------------------- |
-| **`options`** | <code>{ value: string; }</code> |
+| Param         | Type                                                                |
+| ------------- | ------------------------------------------------------------------- |
+| **`options`** | <code><a href="#filedownloadoptions">FileDownloadOptions</a></code> |
 
-**Returns:** <code>Promise&lt;{ value: string; }&gt;</code>
+**Returns:** <code>Promise&lt;<a href="#filedownloadresponse">FileDownloadResponse</a>&gt;</code>
 
 --------------------
+
+
+### Interfaces
+
+
+#### FileDownloadResponse
+
+| Prop             | Type                |
+| ---------------- | ------------------- |
+| **`downloadId`** | <code>string</code> |
+
+
+#### FileDownloadOptions
+
+| Prop           | Type                |
+| -------------- | ------------------- |
+| **`url`**      | <code>string</code> |
+| **`fileName`** | <code>string</code> |
 
 </docgen-api>

@@ -1,3 +1,11 @@
+export interface FileDownloadOptions {
+  url: string;
+  fileName: string;
+}
+export interface FileDownloadResponse {
+  downloadId?: string;
+}
+
 export interface NativeFileDownloaderPlugin {
-  echo(options: { value: string }): Promise<{ value: string }>;
+  scheduleFileDownload(options: FileDownloadOptions): Promise<FileDownloadResponse>;
 }

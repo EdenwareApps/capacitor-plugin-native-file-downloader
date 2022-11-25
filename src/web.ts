@@ -1,13 +1,22 @@
 import { WebPlugin } from '@capacitor/core';
 
-import type { NativeFileDownloaderPlugin } from './definitions';
+import type { NativeFileDownloaderPlugin , FileDownloadOptions, FileDownloadResponse } from './definitions';
 
 export class NativeFileDownloaderWeb
   extends WebPlugin
   implements NativeFileDownloaderPlugin
 {
-  async echo(options: { value: string }): Promise<{ value: string }> {
-    console.log('ECHO', options);
-    return options;
+  async scheduleFileDownload(options: FileDownloadOptions): Promise<FileDownloadResponse> {
+    const a = document.createElement('a');
+    a.href = options.url;
+    a.download = options.fileName;
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    return {
+      downloadId: undefined
+    }
   }
 }

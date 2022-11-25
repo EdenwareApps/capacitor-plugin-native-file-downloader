@@ -7,12 +7,8 @@ import Capacitor
  */
 @objc(NativeFileDownloaderPlugin)
 public class NativeFileDownloaderPlugin: CAPPlugin {
-    private let implementation = NativeFileDownloader()
 
-    @objc func echo(_ call: CAPPluginCall) {
-        let value = call.getString("value") ?? ""
-        call.resolve([
-            "value": implementation.echo(value)
-        ])
+    @objc func scheduleFileDownload(_ call: CAPPluginCall) {
+        call.unimplemented("Not implemented on iOS.");
     }
 }
