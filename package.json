@@ -1,6 +1,6 @@
 {
-  "name": "capacitor-plugin-native-file-downloader",
   "version": "0.0.1",
+  "name": "@eoscz/capacitor-plugin-native-file-downloader",
   "description": "Capacitor plugin for downloading files using native apis.",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",

@@ -5,7 +5,7 @@ Capacitor plugin for downloading files using native apis. Currently available on
 ## Install
 
 ```bash
-npm install capacitor-plugin-native-file-downloader
+npm install @eoscz/capacitor-plugin-native-file-downloader
 npx cap sync
 ```
 
