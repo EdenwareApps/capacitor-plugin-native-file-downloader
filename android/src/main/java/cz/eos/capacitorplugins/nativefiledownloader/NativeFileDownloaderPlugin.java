@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.net.Uri;
+import android.os.Build;
 import com.getcapacitor.JSObject;
 import com.getcapacitor.PermissionState;
 import com.getcapacitor.Plugin;
@@ -23,7 +24,7 @@ public class NativeFileDownloaderPlugin extends Plugin {
 
     @PluginMethod
     public void scheduleFileDownload(PluginCall call) {
-        if (getPermissionState("storage") != PermissionState.GRANTED) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q && getPermissionState("storage") != PermissionState.GRANTED) {
             requestPermissionForAlias("storage", call, "storagePermissionsCallback");
         } else {
             this.downloadFile(call);
@@ -32,7 +33,7 @@ public class NativeFileDownloaderPlugin extends Plugin {
 
     @PermissionCallback
     private void storagePermissionsCallback(PluginCall call) {
-        if (getPermissionState("storage") == PermissionState.GRANTED) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q || getPermissionState("storage") == PermissionState.GRANTED) {
             this.downloadFile(call);
         } else {
             call.reject("PERMISSION_REQUIRED");
