@@ -1,12 +1,11 @@
 package cz.eos.capacitorplugins.nativefiledownloader;
 
 import android.os.Environment;
-
 import com.getcapacitor.PluginCall;
-
 import java.io.File;
 
 class FileDownloadOptions {
+
     private final File downloadsDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
     private final String url;
     private final String fileName;

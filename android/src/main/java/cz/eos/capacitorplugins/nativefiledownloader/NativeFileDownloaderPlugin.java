@@ -4,7 +4,6 @@ import android.Manifest;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.net.Uri;
-
 import com.getcapacitor.JSObject;
 import com.getcapacitor.PermissionState;
 import com.getcapacitor.Plugin;
@@ -17,17 +16,10 @@ import com.getcapacitor.annotation.PermissionCallback;
 @CapacitorPlugin(
     name = "NativeFileDownloader",
     permissions = {
-        @Permission(
-            alias = "storage",
-            strings = {
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-            }
-        )
+        @Permission(alias = "storage", strings = { Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE })
     }
 )
 public class NativeFileDownloaderPlugin extends Plugin {
-
 
     @PluginMethod
     public void scheduleFileDownload(PluginCall call) {
@@ -36,7 +28,6 @@ public class NativeFileDownloaderPlugin extends Plugin {
         } else {
             this.downloadFile(call);
         }
-
     }
 
     @PermissionCallback
@@ -61,12 +52,10 @@ public class NativeFileDownloaderPlugin extends Plugin {
 
     private DownloadManager.Request createDownloadRequest(FileDownloadOptions options) {
         return new DownloadManager.Request(Uri.parse(options.getUrl()))
-                .setTitle(options.getFileName())
-                .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-                .setAllowedOverRoaming(false)
-                .setAllowedOverMetered(true)
-                .setDestinationUri(Uri.fromFile(options.getDownloadDestination()))
-                ;
+            .setTitle(options.getFileName())
+            .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+            .setAllowedOverRoaming(false)
+            .setAllowedOverMetered(true)
+            .setDestinationUri(Uri.fromFile(options.getDownloadDestination()));
     }
-
 }

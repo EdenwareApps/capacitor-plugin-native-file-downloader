@@ -24,5 +24,7 @@ export interface NativeFileDownloaderPlugin {
    * Schedule file to be downloaded.
    * Returned Promise resolves when the download is scheduled (not when download completes).
    */
-  scheduleFileDownload(options: ScheduleFileDownloadOptions): Promise<ScheduleFileDownloadResult>;
+  scheduleFileDownload(
+    options: ScheduleFileDownloadOptions,
+  ): Promise<ScheduleFileDownloadResult>;
 }
