@@ -9,6 +9,6 @@ import Capacitor
 public class NativeFileDownloaderPlugin: CAPPlugin {
 
     @objc func scheduleFileDownload(_ call: CAPPluginCall) {
-        call.unimplemented("Not implemented on iOS.");
+        call.unimplemented("Not implemented on iOS.")
     }
 }
