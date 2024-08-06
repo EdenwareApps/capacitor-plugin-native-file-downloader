@@ -41,7 +41,8 @@
     "build": "npm run clean && npm run docgen && tsc && rollup -c rollup.config.js",
     "clean": "rimraf ./dist",
     "watch": "tsc --watch",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "publish-release": "cd dist && npm publish --registry=https://npm.eos.cz --ignore-scripts && cd ../"
   },
   "devDependencies": {
     "@capacitor/android": "^6.0.0",
