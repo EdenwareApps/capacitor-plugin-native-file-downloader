@@ -1,5 +1,5 @@
 {
-  "version": "2.0.1",
+  "version": "3.0.0",
   "name": "@eoscz/capacitor-plugin-native-file-downloader",
   "description": "Capacitor plugin for downloading files using native apis.",
   "main": "dist/plugin.cjs.js",
