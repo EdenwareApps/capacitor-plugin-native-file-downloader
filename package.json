@@ -1,26 +1,30 @@
 {
-  "version": "3.0.0",
-  "name": "@eoscz/capacitor-plugin-native-file-downloader",
-  "description": "Capacitor plugin for downloading files using native apis.",
+  "name": "capacitor-nodejs",
+  "version": "1.0.0-beta.7",
+  "description": "A full-fledged Node.js runtime for Capacitor apps",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
   "unpkg": "dist/plugin.js",
   "files": [
     "android/src/main/",
+    "android/libnode/",
     "android/build.gradle",
+    "android/CMakeLists.txt",
+    "assets/",
     "dist/",
     "ios/Plugin/",
-    "CapacitorPluginNativeFileDownloader.podspec"
+    "electron/",
+    "CapacitorNodejs.podspec"
   ],
-  "author": "eos media",
+  "author": "Rene Hampölz",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eosmediacz/capacitor-plugin-native-file-downloader.git"
+    "url": "git+https://github.com/hampoelz/Capacitor-NodeJS.git"
   },
   "bugs": {
-    "url": "https://github.com/eosmediacz/capacitor-plugin-native-file-downloader/issues"
+    "url": "https://github.com/hampoelz/Capacitor-NodeJS/issues"
   },
   "keywords": [
     "capacitor",
@@ -29,39 +33,48 @@
   ],
   "scripts": {
     "verify": "npm run verify:ios && npm run verify:android && npm run verify:web",
-    "verify:ios": "cd ios && pod install && xcodebuild -workspace Plugin.xcworkspace -scheme Plugin -destination generic/platform=iOS && cd ..",
+    "verify:ios": "cd ios && pod install && xcodebuild -workspace Plugin.xcworkspace -scheme Plugin && cd ..",
     "verify:android": "cd android && ./gradlew clean build test && cd ..",
     "verify:web": "npm run build",
     "lint": "npm run eslint && npm run prettier -- --check && npm run swiftlint -- lint",
-    "fmt": "npm run eslint -- --fix && npm run prettier -- --write && npm run swiftlint -- --fix --format",
+    "fmt": "npm run eslint -- --fix && npm run prettier -- --write && npm run swiftlint -- autocorrect --format",
     "eslint": "eslint . --ext ts",
-    "prettier": "prettier \"**/*.{css,html,ts,js,java}\"",
+    "prettier": "prettier \"**/*.{css,html,ts,js,java}\" --plugin=prettier-plugin-java",
     "swiftlint": "node-swiftlint",
-    "docgen": "docgen --api NativeFileDownloaderPlugin --output-readme README.md --output-json dist/docs.json",
-    "build": "npm run clean && npm run docgen && tsc && rollup -c rollup.config.js",
+    "docgen": "docgen --api NodeJSInterface --output-readme README.md --output-json dist/docs.json",
+    "build-bridge": "tsc --project bridge/tsconfig.json && rollup -c bridge/rollup.config.js && rimraf ./bridge/build",
+    "build-electron": "tsc --project electron/tsconfig.json && rollup -c electron/rollup.config.js && rimraf ./electron/build",
+    "build": "npm run clean && npm run docgen && tsc && rollup -c rollup.config.js && npm run build-electron && npm run build-bridge",
     "clean": "rimraf ./dist",
     "watch": "tsc --watch",
-    "prepublishOnly": "npm run build",
-    "publish-release": "npm publish --registry=https://npm.eos.cz --ignore-scripts"
+    "pack:bridge": "cd assets/types/bridge && npm pack --pack-destination ../ && mv ../types-bridge-*.tgz ../bridge.tgz",
+    "pack": "npm run pack:bridge && npm pack",
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "@capacitor/android": "^6.0.0",
+    "@capacitor/cli": "^6.0.0",
     "@capacitor/core": "^6.0.0",
-    "@capacitor/docgen": "^0.0.18",
+    "@capacitor/docgen": "^0.2.0",
     "@capacitor/ios": "^6.0.0",
-    "@ionic/eslint-config": "^0.4.0",
-    "@ionic/prettier-config": "^1.0.1",
+    "@ionic/eslint-config": "^0.3.0",
+    "@ionic/prettier-config": "^4.0.0",
     "@ionic/swiftlint-config": "^1.1.2",
-    "eslint": "^8.57.0",
-    "prettier": "~2.3.0",
-    "prettier-plugin-java": "~1.0.2",
+    "@rollup/plugin-commonjs": "^25.0.4",
+    "@rollup/plugin-node-resolve": "^15.2.1",
+    "electron": "^26.2.2",
+    "eslint": "^7.11.0",
+    "prettier": "~3.0.3",
+    "prettier-plugin-java": "~2.3.1",
     "rimraf": "^3.0.2",
     "rollup": "^2.32.0",
-    "swiftlint": "^1.0.1",
-    "typescript": "~4.1.5"
+    "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-dts": "^4.2.3",
+    "swiftlint": "^1.0.2",
+    "typescript": "~4.3.4"
   },
   "peerDependencies": {
-    "@capacitor/core": "^6.0.0"
+    "@capacitor/core": "^5.0.0"
   },
   "prettier": "@ionic/prettier-config",
   "swiftlint": "@ionic/swiftlint-config",
@@ -74,6 +87,9 @@
     },
     "android": {
       "src": "android"
+    },
+    "electron": {
+      "src": "electron"
     }
   }
 }
