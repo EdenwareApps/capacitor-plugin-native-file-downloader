@@ -1,9 +1,5 @@
 import { WebPlugin } from '@capacitor/core';
-import type { CapacitorException } from '@capacitor/core';
-import type { CapacitorNodeJSPlugin } from './implementation';
-export declare class CapacitorNodeJSWeb extends WebPlugin implements CapacitorNodeJSPlugin {
-    protected unavailableNodeJS(): CapacitorException;
-    start(): Promise<void>;
-    send(): Promise<void>;
-    whenReady(): Promise<void>;
+import type { NativeFileDownloaderPlugin, ScheduleFileDownloadOptions, ScheduleFileDownloadResult } from './definitions';
+export declare class NativeFileDownloaderWeb extends WebPlugin implements NativeFileDownloaderPlugin {
+    scheduleFileDownload(options: ScheduleFileDownloadOptions): Promise<ScheduleFileDownloadResult>;
 }
