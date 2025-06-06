@@ -1,5 +1,5 @@
 {
-  "version": "2.0.1",
+  "version": "2.0.2",
   "name": "@eoscz/capacitor-plugin-native-file-downloader",
   "description": "Capacitor plugin for downloading files using native apis.",
   "main": "dist/plugin.cjs.js",
@@ -44,23 +44,23 @@
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "@capacitor/android": "^6.0.0",
-    "@capacitor/core": "^6.0.0",
+    "@capacitor/android": "^7.0.0",
+    "@capacitor/core": "^7.0.0",
     "@capacitor/docgen": "^0.2.0",
-    "@capacitor/ios": "^6.0.0",
+    "@capacitor/ios": "^7.0.0",
     "@ionic/eslint-config": "^0.3.0",
     "@ionic/prettier-config": "^4.0.0",
     "@ionic/swiftlint-config": "^1.1.2",
-    "eslint": "^7.11.0",
-    "prettier": "~3.0.3",
-    "prettier-plugin-java": "~2.3.1",
-    "rimraf": "^3.0.2",
-    "rollup": "^2.32.0",
+    "eslint": "^8.0.0",
+    "prettier": "~3.3.3",
+    "prettier-plugin-java": "~2.6.0",
+    "rimraf": "^5.0.0",
+    "rollup": "^4.0.0",
     "swiftlint": "^1.0.2",
-    "typescript": "~4.3.4"
+    "typescript": "~5.3.3"
   },
   "peerDependencies": {
-    "@capacitor/core": "^6.0.0"
+    "@capacitor/core": "^7.0.0"
   },
   "prettier": "@ionic/prettier-config",
   "swiftlint": "@ionic/swiftlint-config",
